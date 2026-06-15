@@ -1,0 +1,242 @@
+/* ==========================================================================
+   VARIÁVEIS DE COR E CONFIGURAÇÃO BASE
+   ========================================================================== */
+   :root {
+    --bg-page: #030712;
+    --bg-card: #0b0f19;
+    --text-primary: #ffffff;
+    --text-secondary: #8f9cae;
+    --accent-cyan: #00f0ff;
+    --accent-purple: #7000ff;
+    --font-tech: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: var(--font-body);
+}
+
+/* Instrução animada para o utilizador */
+.instruction {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { opacity: 0.5; text-shadow: 0 0 0px rgba(0, 240, 255, 0); }
+    50% { opacity: 1; color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
+    100% { opacity: 0.5; text-shadow: 0 0 0px rgba(0, 240, 255, 0); }
+}
+
+/* ==========================================================================
+   ESTRUTURA 3D DO CARTÃO (FLIP CARD)
+   ========================================================================== */
+.card-container {
+    width: 540px;
+    height: 300px;
+    perspective: 1500px; /* Cria o efeito de profundidade 3D */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* Rotação ao passar o rato (Desktop) */
+.card-container:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Rotação via classe utilitária (ativada por JS no Mobile) */
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Configuração de ambas as faces */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde a parte de trás enquanto gira */
+    border-radius: 14px;
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    background-color: var(--bg-card);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.02);
+    overflow: hidden;
+}
+
+/* Linha néon decorativa presente no topo de ambas as faces */
+.card-face::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+}
+
+/* ==========================================================================
+   DESIGN: FRENTE
+   ========================================================================== */
+.card-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: radial-gradient(circle at center, #111827 0%, #0b0f19 100%);
+    transform: rotateY(0deg);
+}
+
+.logo-container {
+    margin-bottom: 12px;
+}
+
+.logo-img {
+    max-width: 230px;
+    height: auto;
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.3));
+}
+
+.tagline {
+    font-family: var(--font-tech);
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   DESIGN: VERSO
+   ========================================================================== */
+.card-back {
+    display: flex;
+    padding: 35px;
+    justify-content: space-between;
+    transform: rotateY(180deg);
+    background: #090d16;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.owner-name {
+    font-family: var(--font-tech);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.owner-title {
+    font-family: var(--font-body);
+    color: var(--accent-cyan);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.contact-item:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+}
+
+.contact-item i {
+    color: var(--accent-cyan);
+    width: 18px;
+    text-align: center;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.mini-logo {
+    max-width: 120px;
+    height: auto;
+    opacity: 0.8;
+}
+
+.qrcode-box {
+    width: 85px;
+    height: 85px;
+    border: 2px solid var(--accent-cyan);
+    padding: 4px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.qrcode-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .card-container {
+        width: 340px;
+        height: 200px;
+    }
+    .owner-name { font-size: 1rem; }
+    .owner-title { font-size: 0.75rem; margin-bottom: 10px; }
+    .contact-item { font-size: 0.75rem; gap: 6px; }
+    .logo-img { max-width: 150px; }
+    .tagline { font-size: 0.55rem; letter-spacing: 2px; }
+    .mini-logo { max-width: 70px; }
+    .qrcode-box { width: 55px; height: 55px; }
+    .card-back { padding: 15px; }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Power Services - Cartão de Visita</title>
+
+    <!-- FontAwesome para os Ícones de Redes/Contactos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts - Tipografia de estilo Tecnológico/Cyber -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600;700&display=swap"
+    />
+
+    <!-- Vinculação do Ficheiro CSS Externo -->
+    <link rel="stylesheet" href="css/cartao.css" />
+  </head>
+  <body>
+    <div class="instruction">Passe o rato ou toque para girar</div>
+
+    <!-- CARTÃO DE VISITA -->
+    <div class="card-container">
+      <div class="card-inner" id="businessCard">
+        <!-- FACE FRONTAL -->
+        <div class="card-face card-front">
+          <div class="logo-container">
+            <!-- Caminho para o logotipo da empresa -->
+            <img
+              src="img/PowerServices.png"
+              alt="Power Services Logo"
+              class="logo-img"
+            />
+          </div>
+          <div class="tagline">Soluções em Tecnologia</div>
+        </div>
+
+        <!-- FACE TRASEIRA -->
+        <div class="card-face card-back">
+          <div class="left-side">
+            <div class="owner-name">Seu Nome Aqui</div>
+            <div class="owner-title">Infraestrutura & Cibersegurança</div>
+
+            <div class="contact-info">
+              <a href="tel:+5515999999999" class="contact-item">
+                <i class="fas fa-phone-alt"></i> (15) 99999-9999
+              </a>
+              <a
+                href="mailto:contato@powerservices.com.br"
+                class="contact-item"
+              >
+                <i class="fas fa-envelope"></i> contato@powerservices.com.br
+              </a>
+              <span class="contact-item">
+                <i class="fas fa-map-marker-alt"></i> Itapetininga - SP
+              </span>
+            </div>
+          </div>
+
+          <div class="right-side">
+            <img
+              src="img/PowerServices.png"
+              alt="Power Services"
+              class="mini-logo"
+            />
+
+            <div class="qrcode-box">
+              <!-- QR Code dinâmico apontando para o site ou WhatsApp -->
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://powerservices.com.br"
+                alt="QR Code"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vinculação do Ficheiro JavaScript Externo -->
+    <script src="js/cartao.js"></script>
+  </body>
+</html>
